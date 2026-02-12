@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
 import {
   FaInstagram,
   FaLinkedinIn,
@@ -58,28 +59,60 @@ export default function Contact() {
   const iconClass =
     "w-10 h-10 border border-[#c6a46a] rounded-lg flex items-center justify-center text-[#c6a46a] hover:bg-[#c6a46a] hover:text-white transition";
 
+  // ✅ same animation style (TS-safe)
+  const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.14, delayChildren: 0.06 },
+    },
+  };
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 36 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.85, ease: easeOutExpo },
+    },
+  };
+
+  const viewport = { once: true, amount: 0.25 };
+
   return (
     <section className="bg-white min-h-screen px-6 md:px-16 pt-24 pb-32">
-      
       {/* Title */}
-      <h1 className="text-center font-serif text-4xl md:text-5xl text-[#c6a46a] mb-20">
+      <motion.h1
+        variants={item}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewport}
+        className="text-center font-serif text-4xl md:text-5xl text-[#c6a46a] mb-20"
+      >
         Contact Us
-      </h1>
+      </motion.h1>
 
-      {/* Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28">
-
+      {/* Info Cards (card-wise) */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewport}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28"
+      >
         {/* Address */}
-        <div className="border border-gray-200 rounded-2xl p-8">
+        <motion.div variants={item} className="border border-gray-200 rounded-2xl p-8">
           <h3 className="font-serif text-xl mb-4">Address</h3>
           <p className="text-sm leading-7 text-gray-700">
-            10/1, Block No.2, W.H.S, Kirti Nagar Industrial Area,<br />
+            10/1, Block No.2, W.H.S, Kirti Nagar Industrial Area,
+            <br />
             Kirti Nagar, New Delhi, Delhi 110015
           </p>
-        </div>
+        </motion.div>
 
         {/* Email */}
-        <div className="border border-gray-200 rounded-2xl p-8">
+        <motion.div variants={item} className="border border-gray-200 rounded-2xl p-8">
           <h3 className="font-serif text-xl mb-4">Email</h3>
           <a
             href="mailto:work@shrutichadha.com"
@@ -87,35 +120,55 @@ export default function Contact() {
           >
             work@shrutichadha.com
           </a>
-        </div>
+        </motion.div>
 
         {/* Social */}
-        <div className="border border-gray-200 rounded-2xl p-8">
+        <motion.div variants={item} className="border border-gray-200 rounded-2xl p-8">
           <h3 className="font-serif text-xl mb-6">Social</h3>
           <div className="flex flex-wrap gap-4">
-            <a href="https://www.instagram.com/" target="_blank" className={iconClass}><FaInstagram /></a>
-            <a href="https://www.linkedin.com/" target="_blank" className={iconClass}><FaLinkedinIn /></a>
-            <a href="https://www.youtube.com/" target="_blank" className={iconClass}><FaYoutube /></a>
-            <a href="https://www.facebook.com/" target="_blank" className={iconClass}><FaFacebookF /></a>
-            <a href="https://www.pinterest.com/" target="_blank" className={iconClass}><FaPinterestP /></a>
-            <a href="https://www.reddit.com/" target="_blank" className={iconClass}><FaRedditAlien /></a>
-            <a href="https://www.quora.com/" target="_blank" className={iconClass}><FaQuora /></a>
+            <a href="https://www.instagram.com/" target="_blank" className={iconClass}>
+              <FaInstagram />
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank" className={iconClass}>
+              <FaLinkedinIn />
+            </a>
+            <a href="https://www.youtube.com/" target="_blank" className={iconClass}>
+              <FaYoutube />
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" className={iconClass}>
+              <FaFacebookF />
+            </a>
+            <a href="https://www.pinterest.com/" target="_blank" className={iconClass}>
+              <FaPinterestP />
+            </a>
+            <a href="https://www.reddit.com/" target="_blank" className={iconClass}>
+              <FaRedditAlien />
+            </a>
+            <a href="https://www.quora.com/" target="_blank" className={iconClass}>
+              <FaQuora />
+            </a>
           </div>
-        </div>
-
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Project Enquiry Form */}
-      <div className="max-w-4xl mx-auto border border-gray-200 rounded-3xl px-8 md:px-16 py-16">
-        <h2 className="text-center font-serif text-3xl mb-2">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewport}
+        className="max-w-4xl mx-auto border border-gray-200 rounded-3xl px-8 md:px-16 py-16"
+      >
+        <motion.h2 variants={item} className="text-center font-serif text-3xl mb-2">
           Project Enquiry
-        </h2>
-        <p className="text-center text-gray-600 text-sm mb-12">
-          Tell us a bit about your project and we’ll get back within 1–2 business days.
-        </p>
+        </motion.h2>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <motion.p variants={item} className="text-center text-gray-600 text-sm mb-12">
+          Tell us a bit about your project and we’ll get back within 1–2 business days.
+        </motion.p>
+
+        <motion.form variants={container} ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+          <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               name="name"
               required
@@ -129,24 +182,28 @@ export default function Contact() {
               placeholder="Email *"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-[#c6a46a] outline-none"
             />
-          </div>
+          </motion.div>
 
-          <input
-            name="phone"
-            required
-            placeholder="Phone *"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-[#c6a46a] outline-none"
-          />
+          <motion.div variants={item}>
+            <input
+              name="phone"
+              required
+              placeholder="Phone *"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-[#c6a46a] outline-none"
+            />
+          </motion.div>
 
-          <textarea
-            name="message"
-            required
-            rows={6}
-            placeholder="Tell us about your goals, timeline, and any references."
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-[#c6a46a] outline-none"
-          />
+          <motion.div variants={item}>
+            <textarea
+              name="message"
+              required
+              rows={6}
+              placeholder="Tell us about your goals, timeline, and any references."
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-[#c6a46a] outline-none"
+            />
+          </motion.div>
 
-          <div className="text-center pt-6">
+          <motion.div variants={item} className="text-center pt-6">
             <button
               type="submit"
               disabled={loading}
@@ -154,21 +211,22 @@ export default function Contact() {
             >
               {loading ? "Sending..." : "Send Enquiry"}
             </button>
-          </div>
+          </motion.div>
 
+          {/* Status messages */}
           {status === "success" && (
-            <p className="text-center text-green-600 text-sm">
+            <motion.p variants={item} className="text-center text-green-600 text-sm">
               ✅ Mail successfully sent. We’ll contact you soon.
-            </p>
+            </motion.p>
           )}
 
           {status === "error" && (
-            <p className="text-center text-red-600 text-sm">
+            <motion.p variants={item} className="text-center text-red-600 text-sm">
               ❌ Mail nahi gayi. Please try again later.
-            </p>
+            </motion.p>
           )}
-        </form>
-      </div>
+        </motion.form>
+      </motion.div>
     </section>
   );
 }

@@ -13,8 +13,6 @@ const images = [
   "/g10.webp",
   "/g7.webp",
  
-
- 
 ];
 
 export default function Gallery() {
