@@ -48,12 +48,10 @@ export default function Footer() {
           >
             <motion.p variants={item} className="text-base leading-relaxed">
               Address: 10/1, Block No.2,W.H.S, Kirti Nagar Industrial Area, Kirti
-              Nagar, New Delhi, Delhi
+              Nagar, New Delhi, Delhi - 110015
             </motion.p>
 
-            <motion.p variants={item} className="mt-8 text-center text-base">
-              110015
-            </motion.p>
+           
 
             {/* Social icons */}
             <motion.div
