@@ -46,12 +46,14 @@ export default function Footer() {
             viewport={viewport}
             className="text-neutral-900"
           >
-            <motion.p variants={item} className="text-base leading-relaxed">
+            <motion.p variants={item} className="text-base leading-relaxed justify-center text-center">
               Address: 10/1, Block No.2,W.H.S, Kirti Nagar Industrial Area, Kirti
               Nagar, New Delhi, Delhi - 110015
             </motion.p>
 
-           
+            <motion.p variants={item} className="mt-8 text-center text-base">
+            
+            </motion.p>
 
             {/* Social icons */}
             <motion.div

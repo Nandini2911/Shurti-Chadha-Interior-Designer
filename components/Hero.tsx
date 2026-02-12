@@ -19,7 +19,7 @@ export default function Hero() {
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute " />
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-center justify-center px-6">
