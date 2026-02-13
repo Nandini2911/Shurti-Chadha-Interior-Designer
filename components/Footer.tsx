@@ -24,21 +24,17 @@ export default function Footer() {
     },
   };
 
-  // trigger when footer comes into view
   const viewport = { once: true, amount: 0.25 };
 
   return (
     <footer className="w-full bg-white">
-      {/* Top line (thin) */}
       <div className="w-full border-t border-[#e5d9b8]/40" />
 
-      {/* Main footer row */}
       <div className="w-full px-[2.5vw] py-10 relative">
-        {/* ✅ Vertical divider that touches top & bottom inside this block */}
         <div className="hidden md:block absolute top-0 bottom-0 left-[calc(100%-420px-1px)] w-px bg-[#e5d9b8]" />
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_420px] items-start gap-10">
-          {/* Left: Address + icons */}
+          {/* Left */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -46,14 +42,15 @@ export default function Footer() {
             viewport={viewport}
             className="text-neutral-900"
           >
-            <motion.p variants={item} className="text-base leading-relaxed justify-center text-center">
+            <motion.p
+              variants={item}
+              className="text-base leading-relaxed justify-center text-center"
+            >
               Address: 10/1, Block No.2,W.H.S, Kirti Nagar Industrial Area, Kirti
               Nagar, New Delhi, Delhi - 110015
             </motion.p>
 
-            <motion.p variants={item} className="mt-8 text-center text-base">
-            
-            </motion.p>
+            <motion.p variants={item} className="mt-8 text-center text-base" />
 
             {/* Social icons */}
             <motion.div
@@ -62,17 +59,20 @@ export default function Footer() {
             >
               {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/shrutichadha_/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#C9B27D]"
+                className="group inline-flex h-11 w-11 items-center justify-center rounded-md border border-[#C9B27D] transition-all duration-300 hover:bg-[#C9B27D] hover:scale-105"
               >
                 <svg
-                  width="18"
-                  height="18"
+                  width="19"
+                  height="19"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.8"
+                  className="text-[#C9B27D] group-hover:text-white transition-colors duration-300"
                 >
                   <rect x="3" y="3" width="18" height="18" rx="5" />
                   <circle cx="12" cy="12" r="4" />
@@ -80,39 +80,49 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* LinkedIn */}
+              {/* LinkedIn (clear + attractive) */}
               <a
-                href="#"
+                href="https://in.linkedin.com/in/shruti-chadha-4951b456"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#C9B27D]"
+                className="group inline-flex h-11 w-11 items-center justify-center rounded-md border border-[#C9B27D] transition-all duration-300 hover:bg-[#C9B27D] hover:scale-105"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6.94 8.5H4.5V20h2.44V8.5zM5.72 4.5c-.78 0-1.41.64-1.41 1.42S4.94 7.3 5.72 7.3c.79 0 1.42-.63 1.42-1.38 0-.78-.63-1.42-1.42-1.42zM20 20h-2.44v-5.9c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V20H10.9V8.5h2.34v1.57h.03c.33-.62 1.14-1.27 2.35-1.27 2.51 0 2.97 1.65 2.97 3.8V20z" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-[#C9B27D] group-hover:text-white transition-colors duration-300"
+                >
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.24 8.09h4.5V24H.24zM7.98 8.09h4.31v2.17h.06c.6-1.13 2.07-2.31 4.26-2.31 4.55 0 5.39 3 5.39 6.89V24h-4.5v-7.44c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.93V24h-4.5z" />
                 </svg>
               </a>
 
               {/* Email */}
-              <a
-                href="mailto:work@shrutichadha.com"
-                aria-label="Email"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#C9B27D]"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                >
-                  <path d="M4 6h16v12H4z" />
-                  <path d="M4 7l8 6 8-6" />
-                </svg>
-              </a>
+            <a
+                 href="mailto:contact@shrutichadha.com"
+                 aria-label="Email"
+                 className="group inline-flex h-11 w-11 items-center justify-center rounded-md border border-[#C9B27D] transition-all duration-300 hover:bg-[#C9B27D] hover:scale-105"
+>
+             <svg
+                width="19"
+                height="19"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                className="text-[#C9B27D] group-hover:text-white transition-colors duration-300"
+  >
+               <path d="M4 6h16v12H4z" />
+              <path d="M4 7l8 6 8-6" />
+  </svg>
+</a>
+
             </motion.div>
           </motion.div>
 
-          {/* Right: Pages */}
+          {/* Right */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -150,10 +160,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom line */}
       <div className="w-full border-t border-[#e5d9b8]" />
 
-      {/* Copyright line */}
       <motion.div
         initial="hidden"
         whileInView="show"

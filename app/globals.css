@@ -264,6 +264,18 @@ h6 {
     width: calc(100% - 24px);
   }
 }
+@media (max-width: 1024px) {
+  .ea-logo {
+    grid-column: 2;          /* always center */
+    justify-self: center;
+  }
+
+  .ea-burger {
+    grid-column: 3;          /* always right */
+    justify-self: end;
+  }
+}
+
 
 /* 2K screens: more breathing room */
 @media (min-width: 1600px) {
@@ -315,4 +327,21 @@ body {
 
 .animate-marquee {
   animation: marquee 25s linear infinite;
+}
+/* FORCE LOGO CENTER ON MOBILE/TABLET (override at end) */
+@media (max-width: 1024px) {
+  .ea-nav {
+    /* create equal side space so center is true center */
+    grid-template-columns: 44px 1fr 44px;
+  }
+
+  .ea-logo {
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  .ea-burger {
+    grid-column: 3;
+    justify-self: end;
+  }
 }
