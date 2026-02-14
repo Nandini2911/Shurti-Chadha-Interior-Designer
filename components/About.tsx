@@ -116,7 +116,7 @@ export default function About() {
           <motion.div variants={item} className="text-center">
             <div className="mx-auto mb-6 h-px w-[150px] bg-[#C9B27D]" />
             <h3 className="text-4xl md:text-5xl text-[#C9B27D] leading-tight">
-              10 years
+              8 years
               <br />
               experience
             </h3>
@@ -126,7 +126,7 @@ export default function About() {
           <motion.div variants={item} className="text-center">
             <div className="mx-auto mb-6 h-px w-[150px] bg-[#C9B27D]" />
             <h3 className="text-4xl md:text-5xl text-[#C9B27D] leading-tight">
-              150,000
+              50,000
               <br />
               sqft
             </h3>
@@ -136,7 +136,7 @@ export default function About() {
           <motion.div variants={item} className="text-center">
             <div className="mx-auto mb-6 h-px w-[150px] bg-[#C9B27D]" />
             <h3 className="text-4xl md:text-5xl text-[#C9B27D] leading-tight">
-              25 team
+              15 team
               <br />
               members
             </h3>
@@ -146,7 +146,7 @@ export default function About() {
           <motion.div variants={item} className="text-center">
             <div className="mx-auto mb-6 h-px w-[140px] bg-[#C9B27D]" />
             <h3 className="text-4xl md:text-5xl text-[#C9B27D] leading-tight">
-              100
+              15
               <br />
               projects
             </h3>
