@@ -146,7 +146,7 @@ export default function About() {
           <motion.div variants={item} className="text-center">
             <div className="mx-auto mb-6 h-px w-[140px] bg-[#C9B27D]" />
             <h3 className="text-4xl md:text-5xl text-[#C9B27D] leading-tight">
-              15
+              15 plus
               <br />
               projects
             </h3>
