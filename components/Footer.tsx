@@ -155,6 +155,14 @@ export default function Footer() {
                   CONTACT
                 </a>
               </motion.li>
+              <motion.li variants={item}>
+  <a
+    href="/privacy-policy"
+    className="hover:underline underline-offset-4"
+  >
+    PRIVACY POLICY
+  </a>
+</motion.li>
             </motion.ul>
           </motion.div>
         </div>
