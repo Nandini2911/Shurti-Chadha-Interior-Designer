@@ -181,26 +181,26 @@ h6 {
 }
 
 .ea-mobile.is-open {
-  max-height: 320px;
+  max-height: 500px; /* or use this for full flexibility */
 }
 
 .ea-mobile-nav {
   width: min(1400px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 14px 0 18px;
+  padding: 20px 0 28px;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .ea-mobile-nav a {
   border: 1px solid var(--border);
   background: var(--bg);
-  padding: 14px 16px;
+  padding: 16px 18px;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--gold);
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .ea-mobile-nav a:hover {
@@ -344,4 +344,8 @@ body {
     grid-column: 3;
     justify-self: end;
   }
+}
+.ea-left ul,
+.ea-right ul {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }

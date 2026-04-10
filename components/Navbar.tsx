@@ -32,6 +32,11 @@ export default function Navbar() {
                 ABOUT
               </Link>
             </li>
+            <li>
+              <Link href="/media" onClick={closeMenu}>
+                MEDIA
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -48,6 +53,11 @@ export default function Navbar() {
             <li>
               <Link href="/Gallery" onClick={closeMenu}>
                 GALLERY
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" onClick={closeMenu}>
+                BLOG
               </Link>
             </li>
             <li>
@@ -80,8 +90,14 @@ export default function Navbar() {
           <Link href="#about" onClick={closeMenu}>
             ABOUT
           </Link>
+          <Link href="/media" onClick={closeMenu}>
+            MEDIA
+          </Link>
           <Link href="/gallery" onClick={closeMenu}>
             GALLERY
+          </Link>
+          <Link href="/blog" onClick={closeMenu}>
+            BLOG
           </Link>
           <Link href="/contact" onClick={closeMenu}>
             CONTACT
