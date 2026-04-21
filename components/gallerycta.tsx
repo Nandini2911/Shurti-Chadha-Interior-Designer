@@ -1,5 +1,5 @@
 "use client";
-
+import GalleryCta from "@/components/GalleryCta";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
