@@ -1,81 +1,70 @@
-'use client';
+"use client";
 
-import { motion, type Variants } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export default function ProcessSection() {
-  const easeOutExpo = [0.22, 1, 0.36, 1] as const;
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.9, ease: easeOutExpo },
+  const steps = [
+    {
+      title: "Every space begins with a conversation.",
+      text: "Not just about requirements, but about rhythms — how you live, what you return to, what you seek without always saying it. We listen closely, allowing the foundation of the space to emerge from who you are, rather than what is expected.",
     },
-  };
-
-  const container: Variants = {
-    hidden: {},
-    show: {
-      transition: { staggerChildren: 0.18, delayChildren: 0.05 },
+    {
+      title: "From there, an idea begins to take shape.",
+      text: "Through sketches, layouts, and quiet explorations, the direction reveals itself — not as a fixed plan, but as a feeling translated into form. Each decision builds on the last, moving gently toward something cohesive.",
     },
-  };
-
-  const viewport = { once: true, amount: 0.35 };
+    {
+      title: "As the design deepens, details find their place.",
+      text: "Materials, finishes, and textures are chosen with care — not to stand out, but to belong. There is a certain discipline in this stage, where restraint becomes as important as selection.",
+    },
+    {
+      title: "When the space begins to come alive, we stay closely involved.",
+      text: "From execution to the smallest correction, every element is guided with intention, ensuring that what was imagined is carried through without compromise.",
+    },
+    {
+      title: "And finally, the space settles.",
+      text: "With the last layer of styling, it finds its voice — complete, yet unforced. What remains is not just a finished interior, but a place that feels ready… as if it has always been yours.",
+    },
+  ];
 
   return (
-    <section className="w-full bg-white">
-      <div className="w-full px-[2.5vw] pt-4 py-10">
-        {/* Shared width wrapper */}
-        <div className="mx-auto max-w-[85vw]">
-          {/* Image (SIZE UNCHANGED) */}
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            variants={item}
-            className="flex justify-center"
-          >
-           <img
-  src="/shruti.jpg"
-  alt="Shruti Chadha creative process"
-  className="w-full h-[600px] object-cover rounded-3xl"
-/>
+    <section className="bg-[#f7f5f2] py-32 px-6 md:px-16">
 
-          </motion.div>
-
-          {/* Text (one-by-one on scroll) */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-16 space-y-6 text-justify hyphens-auto text-sm leading-[1.6] text-neutral-800 md:text-lg"
-          >
-            <motion.p variants={item}>
-              Her creative process is deeply intuitive — guided as much by feeling
-              as by form. Each concept begins with emotion, often distilled into a
-              single thought or word that becomes the essence of the space. From
-              there, materials, palettes, and compositions emerge organically,
-              building an environment that feels as if it has always belonged.
-              Whether it’s the way sunlight falls across a wall, the texture of
-              hand-poured concrete, or the warmth of aged brass — Shruti curates
-              these details with an almost meditative precision. The result is
-              design that feels lived-in yet elevated, grounded yet graceful.
-            </motion.p>
-
-            <motion.p variants={item}>
-              Beyond interiors, Shruti’s work extends into a larger creative
-              vision — one that celebrates the art of living with intention. She
-              often collaborates with artisans, photographers, and contemporary
-              creators to explore new intersections between design, craft, and
-              culture. Through her studio and her voice, she continues to
-              champion slow design, mindful creation, and the enduring power of
-              spaces that make people feel — not just impressed, but understood.
-            </motion.p>
-          </motion.div>
-        </div>
+      {/* Heading */}
+      <div className="mb-24">
+        <h2 className="text-4xl md:text-6xl font-serif">
+          Our Process
+        </h2>
       </div>
+
+      {/* Steps */}
+      <div className="space-y-28">
+        {steps.map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: i * 0.1 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-start"
+          >
+            {/* Step Number */}
+            <div className="text-[#c6c1b9] text-5xl font-serif">
+              {String(i + 1).padStart(2, "0")}
+            </div>
+
+            {/* Content */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-serif mb-4">
+                {step.title}
+              </h3>
+              <p className="text-[#555] leading-[1.9]">
+                {step.text}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
     </section>
   );
 }

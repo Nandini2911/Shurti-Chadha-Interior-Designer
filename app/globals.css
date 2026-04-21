@@ -38,11 +38,14 @@ h6 {
 /* ================= HEADER / NAV ================= */
 
 .ea-header {
-  position: sticky;
+  position: fixed; /* sticky hatao */
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  background: transparent; 
+  border-bottom: none; 
+  transition: all 0.4s ease;
 }
 
 /* NAV CONTAINER */
@@ -81,10 +84,7 @@ h6 {
 /* MENU ITEMS */
 .ea-left li,
 .ea-right li {
-  border: 1px solid var(--border);
-  border-top: none;
-  border-bottom: none;
-  background: var(--bg);
+  background: transparent;
 }
 
 .ea-left li + li,
@@ -103,7 +103,7 @@ h6 {
   letter-spacing: 0.08em;
   text-align: center;
   white-space: nowrap;
-  background: var(--bg);
+ 
   transition: background 0.3s ease, box-shadow 0.3s ease;
   font-size: clamp(12px, 0.35vw + 11px, 15px);
 }
@@ -348,4 +348,89 @@ body {
 .ea-left ul,
 .ea-right ul {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.writing-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* stagger delays */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ea-header.scrolled .ea-left a,
+.ea-header.scrolled .ea-right a {
+  color: var(--gold); /* same gold */
+}
+/* TEXT SMOOTH UP */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    letter-spacing: 0.1em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.02em;
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 1.2s ease forwards;
+}
+
+/* LINE ANIMATION */
+@keyframes lineGrow {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 3rem;
+    opacity: 1;
+  }
+}
+
+.animate-line {
+  animation: lineGrow 1s ease forwards;
+}
+/* BUTTON LUXURY EFFECT */
+.luxury-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #c9b27d;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.luxury-btn:hover::after {
+  transform: translateX(0);
+}
+
+.luxury-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-btn:hover span {
+  color: white;
 }

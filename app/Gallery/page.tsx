@@ -1,12 +1,18 @@
 import Navbar from "@/components/Navbar";
-import Gallery from "@/components/Gallery";
+import GalleryRooms from "@/components/galleryrooms";
 import Footer from "@/components/Footer";
+import GalleryHero from "@/components/Gallery";
+import GalleryIntro from "@/components/galleryintro";
+import Gallerycta from "@/components/gallerycta";
 
 export default function GalleryPage() {
   return (
     <main>
   
-      <Gallery />
+    <GalleryHero/>
+    <GalleryIntro/>
+    <GalleryRooms/>
+    <Gallerycta/>
       <Footer />
     </main>
   );

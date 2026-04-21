@@ -1,138 +1,84 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const images = [
-  "/g1.webp",
-  "/g2.webp",
-  "/g3.webp",
-  "/g4.webp",
-  "/g5.webp",
-  "/g6.webp",
-  "/g9.webp",
-  "/g10.webp",
-  "/g7.webp",
+const categories = [
+  { name: "Bedroom", image: "/gallery/bedroom/bedroom.webp" },
+  { name: "Kitchen", image: "/gallery/kitchen/kitchen.webp" },
+  { name: "Living Room", image: "/gallery/livingroom/living.webp" },
+  { name: "Bar", image: "/gallery/bar/bar.webp" },
+  { name: "Living Room", image: "/gallery/livingroom/living2.webp" },
+  { name: "Bathroom", image: "/gallery/bathroom/bathroom.webp" },
+  { name: "Dining Room", image: "/gallery/dinningroom/dining.webp" },
+  { name: "Bathroom", image: "/gallery/bathroom/bathroom2.webp" },
+  { name: "Mandir", image: "/gallery/mandir/mandir.webp" },
 ];
 
-export default function Gallery() {
+export default function GalleryHero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % categories.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="gallery">
-      <div className="inner">
-        <div className="header">
-          <h1>GALLERY</h1>
-          <p>A curated selection of spaces & details</p>
-        </div>
+    <section className="relative w-full h-[85vh] md:h-screen overflow-hidden">
 
-        <div className="grid">
-          {images.map((src, index) => (
-            <div className="card" key={index}>
-              <Image
-                src={src}
-                alt={`Gallery image ${index + 1}`}
-                fill
-                sizes="(max-width: 640px) 100vw,
-                       (max-width: 900px) 50vw,
-                       (max-width: 1200px) 33vw,
-                       25vw"
-                className="image"
-                priority={index < 3}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* IMAGES (STACKED = SUPER SMOOTH) */}
+      {categories.map((item, i) => (
+        <Image
+          key={i}
+          src={item.image}
+          alt={item.name}
+          fill
+          priority={i === 0}
+          className={`absolute inset-0 object-cover 
+            transition-[opacity,transform] duration-[3000ms] ease-in-out
+            will-change-[opacity,transform]
+            ${i === index
+              ? "opacity-100 scale-105"
+              : "opacity-0 scale-100"}
+          `}
+        />
+      ))}
 
-      <style jsx>{`
-        .gallery {
-          background-color: #f4e0c4;
-          min-height: 100vh;
-          padding: 90px 24px 120px;
-        }
+      {/* OVERLAY */}
+  <div className="absolute inset-0 flex items-center justify-center text-center px-6">
 
-        .inner {
-          width: 100%;
-          max-width: 1900px;
-          margin: 0 auto;
-          padding: 0 56px;
-        }
+  <div className="text-white max-w-2xl">
 
-        .header {
-          text-align: center;
-          margin-bottom: 70px;
-        }
+    {/* HEADING */}
+    <h1
+      key={index}
+      className="font-playfair 
+                 text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4
+                 animate-fadeUp"
+    >
+      {categories[index].name}
+    </h1>
 
-        .header h1 {
-          font-family: "Playfair Display", serif;
-          font-size: clamp(36px, 2.2vw + 18px, 62px);
-          letter-spacing: 2px;
-          margin-bottom: 12px;
-          color: #171717;
-        }
+    {/* LINE */}
+    <div
+      key={index + "line"}
+      className="w-12 h-[1px] bg-[#c9b27d] mx-auto mb-4 opacity-80 animate-line"
+    />
 
-        .header p {
-          font-size: clamp(14px, 0.4vw + 12px, 18px);
-          color: #7a7a7a;
-        }
+    {/* SUBTEXT */}
+    <p
+      key={index + "sub"}
+      className="text-sm sm:text-base md:text-lg opacity-90 animate-fadeUp delay-200"
+    >
+      Curated Spaces Designed with Elegance
+    </p>
 
-        /* ✅ LOCKED 4 COLUMNS FOR DESKTOP (2K / 4K INCLUDED) */
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: clamp(20px, 1.5vw, 44px);
-        }
+  </div>
 
-        .card {
-          position: relative;
-          aspect-ratio: 16 / 10; /* better than fixed height */
-          border-radius: 26px;
-          overflow: hidden;
-          background-color: #e8d2b4;
-        }
-
-        .image {
-          object-fit: cover;
-        }
-
-        /* Large screens extra breathing space */
-        @media (min-width: 2000px) {
-          .inner {
-            max-width: 2100px;
-          }
-        }
-
-        /* Laptop */
-        @media (max-width: 1200px) {
-          .grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        /* Tablet */
-        @media (max-width: 900px) {
-          .grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .inner {
-            padding: 0 24px;
-          }
-        }
-
-        /* Mobile */
-        @media (max-width: 640px) {
-          .gallery {
-            padding: 60px 16px 90px;
-          }
-
-          .inner {
-            padding: 0;
-          }
-
-          .grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
+</div>
     </section>
   );
 }
