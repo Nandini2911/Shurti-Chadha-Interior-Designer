@@ -14,7 +14,7 @@ export default function MediaFeatures() {
   const marqueeLogos = [...logos, ...logos];
 
   // ✅ TS-safe ease tuple
-  const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+  const easeOutExpo ="easeOut";
 
   // ✅ TS-safe variants
   const slideUp: Variants = {
