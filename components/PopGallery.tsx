@@ -11,7 +11,7 @@ export default function PopFloatingGallery() {
       {/* BACKGROUND IMAGE */}
       <div className="absolute inset-0">
         <img
-          src="/g2.jpg" // 👈 apna background image
+          src="/g2.JPG" // 👈 apna background image
           alt="background"
           className="w-full h-full object-cover"
         />
