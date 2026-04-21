@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 
 export default function WhatWeDo() {
@@ -23,15 +23,18 @@ export default function WhatWeDo() {
     }
   ];
 
-  // ✨ Reusable animation
-  const fadeUp = {
-    hidden: { opacity: 0, y: 60 },
+  // ✅ FIXED + TYPED ANIMATION
+  const fadeUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
     show: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut", // ✅ no TS error
       },
     },
   };
@@ -44,7 +47,7 @@ export default function WhatWeDo() {
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-80px" }} // 🔥 smoother trigger
         className="text-center mb-20"
       >
         <h2 className="text-3xl md:text-5xl font-serif leading-tight">
@@ -56,14 +59,14 @@ export default function WhatWeDo() {
       <motion.div
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-80px" }}
         className="grid md:grid-cols-3 gap-10 mb-28"
       >
         {items.map((item, i) => (
           <motion.div
             key={i}
             variants={fadeUp}
-            transition={{ delay: i * 0.2 }} // ✨ stagger effect
+            transition={{ delay: i * 0.15 }} // ✨ smoother stagger
             className="group"
           >
             <div className="relative w-full h-[320px] overflow-hidden rounded-xl bg-gray-200">
@@ -72,7 +75,7 @@ export default function WhatWeDo() {
                 alt={item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                priority={i === 0} // ✅ only first image = LCP fix
+                priority={i === 0}
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -93,7 +96,7 @@ export default function WhatWeDo() {
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-80px" }}
         className="bg-[#f7f5f2] py-5 px-6 md:px-16"
       >
         <div className="max-w-3xl mx-auto text-center">
