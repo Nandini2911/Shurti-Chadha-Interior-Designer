@@ -3,7 +3,7 @@
 import { motion, type Variants } from 'framer-motion';
 
 export default function Footer() {
-  const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+  const easeOutExpo = "easeOut";
 
   const container: Variants = {
     hidden: {},

@@ -60,7 +60,7 @@ export default function Contact() {
     "w-10 h-10 border border-[#c6a46a] rounded-lg flex items-center justify-center text-[#c6a46a] hover:bg-[#c6a46a] hover:text-white transition";
 
   // ✅ same animation style (TS-safe)
-  const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+  const easeOutExpo = "easeOut";
 
   const container: Variants = {
     hidden: {},
