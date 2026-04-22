@@ -146,7 +146,7 @@ export default function Footer() {
                 </a>
               </motion.li>
               <motion.li variants={item}>
-                <a href="#gallery" className="hover:underline underline-offset-4">
+                <a href="/gallery" className="hover:underline underline-offset-4">
                   GALLERY
                 </a>
               </motion.li>
