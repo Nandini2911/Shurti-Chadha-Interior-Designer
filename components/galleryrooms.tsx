@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 type SectionType = {
@@ -22,37 +21,10 @@ const sections: SectionType[] = [
 ];
 
 export default function GalleryRooms() {
-  const refs = useRef<Array<HTMLDivElement | null>>([]);
-
-  const setRef =
-    (index: number) => (el: HTMLDivElement | null) => {
-      refs.current[index] = el;
-    };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      {
-        threshold: 0,
-        rootMargin: "0px 0px -100px 0px", // 🔥 early trigger
-      }
-    );
-
-    refs.current.forEach((el) => el && observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="py-[80px] md:py-[120px]">
 
-      {/* TOP NAV BUTTONS */}
+      {/* TOP NAV */}
       <div className="flex flex-wrap justify-center gap-4 mb-20">
         {sections.map((item) => (
           <button
@@ -78,39 +50,22 @@ export default function GalleryRooms() {
             <div
               key={index}
               id={item.slug}
-              ref={setRef(index)}
-              className={`group flex flex-col md:flex-row items-center gap-12 ${
+              className={`fade-up flex flex-col md:flex-row items-center gap-12 ${
                 isReverse ? "md:flex-row-reverse" : ""
               }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* IMAGE */}
-              <div
-                className={`w-full md:w-1/2 overflow-hidden 
-                opacity-0 transition-all duration-500 
-                ease-[cubic-bezier(0.25,0.8,0.25,1)]
-                ${
-                  isReverse
-                    ? "translate-x-10 group-[.show]:translate-x-0"
-                    : "-translate-x-10 group-[.show]:translate-x-0"
-                }
-                group-[.show]:opacity-100
-              `}
-              >
+              <div className="w-full md:w-1/2 overflow-hidden">
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="w-full h-[420px] object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
               {/* TEXT */}
-              <div
-                className={`w-full md:w-1/2 text-center md:text-left space-y-5
-                opacity-0 translate-y-6 
-                transition-all duration-500 ease-out
-                group-[.show]:translate-y-0 group-[.show]:opacity-100
-              `}
-              >
+              <div className="w-full md:w-1/2 text-center md:text-left space-y-5">
                 <h2 className="text-3xl md:text-4xl tracking-wide brand-type">
                   {item.title}
                 </h2>
@@ -133,10 +88,19 @@ export default function GalleryRooms() {
         })}
       </div>
 
-      {/* Animation trigger */}
+      {/* SIMPLE SLIDE-UP ANIMATION */}
       <style jsx>{`
-        .show {
-          opacity: 1;
+        .fade-up {
+          opacity: 0;
+          transform: translateY(40px);
+          animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </section>
